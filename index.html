@@ -2,102 +2,122 @@
 <html lang="pt-br">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Lara Luíza – Maquiagem BH | Noivas, Formandas & Cursos</title>
   <meta name="description" content="Belezas reais, eternizadas em momentos inesquecíveis. Maquiagem para noivas, formandas e eventos em Belo Horizonte (Lourdes). Agende seu horário." />
   <meta name="theme-color" content="#0b0b0b" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Serif elegante + Sans clean -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fontes novas -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0b0b;
-      --surface:#121212;
-      --text:#eaeaea;
-      --muted:#b9b9b9;
-      --gold:#e7c888;           /* dourado principal */
-      --gold-deep:#c9a86a;      /* hover */
-      --line: #2a2a2a;
-      --accent:#20c05c;         /* WhatsApp */
-      --radius:14px;
-      --shadow:0 10px 40px rgba(0,0,0,.35);
+      /* Paleta */
+      --bg:#0b0b0b; --surface:#121212; --text:#eaeaea; --muted:#b9b9b9;
+      --gold:#e7c888; --gold-2:#d7b670; --line:#212121; --accent:#20c05c;
+      /* Tipografia */
+      --ff-title: "Playfair Display", serif;
+      --ff-script: "Great Vibes", cursive;
+      --ff-sub: "Cormorant Garamond", serif;
+      --ff-body: "Lato", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      /* Layout */
       --container: min(1160px, 92vw);
+      --radius:14px; --shadow:0 10px 40px rgba(0,0,0,.35);
+      --headerH: 72px; --fab: 56px; /* tamanho do botão flutuante */
+      /* Áreas seguras (iPhone notch) */
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-padding-top: calc(var(--headerH) + 8px);} /* evita âncora "colada" no header */
     body{
       margin:0; background: radial-gradient(1400px 600px at 110% -10%, rgba(231,200,136,.10), transparent 60%), var(--bg);
-      color:var(--text);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-      scroll-behavior:smooth;
+      color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      font-family: var(--ff-body); font-weight:300; scroll-behavior:smooth;
+      /* reserva para o botão flutuante não cobrir o rodapé no mobile */
+      padding-bottom: calc(var(--fab) + 24px + var(--safe-bottom));
+      overscroll-behavior-y: none;
     }
     img{max-width:100%; display:block}
     a{color:inherit}
-
-    /* Layout util */
     .container{width:var(--container); margin-inline:auto; padding-inline: clamp(12px, 2vw, 20px);}
     .grid{display:grid; gap:clamp(16px, 2.4vw, 28px);}
     .grid-2{grid-template-columns: 1.05fr 1fr;}
     @media (max-width: 980px){ .grid-2{grid-template-columns: 1fr;} }
 
-    /* Header */
+    /* ===== Header ===== */
     header{
-      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(10px);
+      position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(10px);
       background: color-mix(in srgb, var(--bg) 82%, transparent);
       border-bottom:1px solid var(--line);
+      padding-top: var(--safe-top); /* segura abaixo do notch */
     }
-    .nav{height:72px; display:flex; align-items:center; justify-content:space-between; gap:16px;}
+    .nav{
+      height: var(--headerH);
+      display:flex; align-items:center; gap:12px;
+      padding-inline: clamp(10px, 2vw, 16px);
+    }
     .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
     .brand-mark{
       width:38px; height:38px; border-radius:10px;
       background: radial-gradient(120% 120% at 20% 10%, #fff8 0, #0000 40%), linear-gradient(135deg, #1a1a1a, #222);
-      border:1px solid #2b2b2b; position:relative; overflow:hidden;
+      border:1px solid #2b2b2b; position:relative; overflow:hidden; flex:none;
     }
     .brand-mark::after{
       content:"LL"; position:absolute; inset:0; display:grid; place-items:center;
-      font-weight:800; letter-spacing:.5px; color:#121212; 
+      font-weight:700; letter-spacing:.5px;
       background: linear-gradient(135deg, var(--gold), #f2deae);
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      font-family: "Cormorant Garamond", serif; font-size:18px;
+      font-family: var(--ff-title); font-size:18px;
     }
-    .brand span{font-weight:700; letter-spacing:.2px;}
-    .brand small{color:var(--muted); display:block; font-weight:500; margin-top:-2px}
+    .brand-text{display:flex; flex-direction:column; line-height:1;}
+    .brand-text b{font-family:var(--ff-title); font-weight:600; letter-spacing:.2px;}
+    .brand-text small{color:var(--muted); font-weight:400; margin-top:3px}
+
+    .spacer{flex:1} /* empurra menu/hambúrguer para a direita */
 
     nav ul{display:flex; align-items:center; gap:12px; list-style:none; margin:0; padding:0;}
     nav a{ text-decoration:none; color:var(--muted); padding:.55rem .8rem; border-radius:10px; }
     nav a:hover, nav a:focus-visible{ color:var(--text); background:#1a1a1a; outline:none; }
     .cta{
-      appearance:none; border:1px solid #4a3b1b; background:linear-gradient(180deg, var(--gold), #d7b670);
-      color:#1a1204; font-weight:700; padding:.75rem 1rem; border-radius:12px; box-shadow: var(--shadow); cursor:pointer;
+      appearance:none; border:1px solid #4a3b1b; background:linear-gradient(180deg, var(--gold), var(--gold-2));
+      color:#1a1204; font-weight:700; padding:.72rem .95rem; border-radius:12px; box-shadow: var(--shadow); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
     }
     .cta:hover{ filter:brightness(.98); transform:translateY(-1px);}
-    .burger{ display:none; background:none; border:none; color:var(--text); font-size:1.6rem; }
+    .burger{
+      margin-left:auto; background:none; border:none; color:var(--text); font-size:1.55rem; line-height:1; padding:.4rem .6rem; border-radius:8px;
+    }
+    .burger:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+    /* Mobile menu */
     @media (max-width:900px){
-      .burger{display:block}
       nav ul{
-        position:fixed; inset:72px 0 auto 0; background:var(--bg); border-bottom:1px solid var(--line);
-        flex-direction:column; gap:4px; padding:14px; transform:translateY(-140%); transition:.35s ease;
+        position:fixed; left:0; right:0; top: calc(var(--headerH) + var(--safe-top)); 
+        height: calc(100dvh - var(--headerH) - var(--safe-top));
+        background:var(--bg); border-top:1px solid var(--line);
+        flex-direction:column; gap:6px; padding:14px; transform:translateY(-140%); transition:.35s ease;
       }
-      nav ul.open{ transform:translateY(0);}
+      nav ul.open{ transform:translateY(0); }
       .cta{width:100%}
     }
 
-    /* Hero */
-    .hero{ padding: clamp(56px, 7vw, 110px) 0 clamp(40px, 6vw, 96px); }
+    /* ===== Hero ===== */
+    .hero{ padding: clamp(48px, 7vw, 110px) 0 clamp(40px, 6vw, 96px); }
     .eyebrow{ color: var(--gold); font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:.82rem;}
-    h1, h2, h3{ font-family: "Cormorant Garamond", serif; margin:0 0 10px; line-height:1.06;}
-    h1{ font-size: clamp(2.2rem, 5.2vw, 4.2rem); color: var(--gold); font-weight:600;}
+    h1,h2,h3{ margin:0 0 10px; line-height:1.06; }
+    h1{ font-family: var(--ff-title); font-weight:600; font-size: clamp(2.1rem, 5.1vw, 4.2rem); color: var(--gold); }
+    .script{ font-family: var(--ff-script); font-size: 1.6rem; color: var(--gold); }
     .hero p{ color:var(--muted); font-size: clamp(1rem, 1.3vw, 1.2rem); max-width: 62ch;}
     .hero .actions{ display:flex; gap:.8rem; flex-wrap:wrap; margin-top:18px; }
     .btn{
-      appearance:none; border:1px solid #4a3b1b; background:linear-gradient(180deg, var(--gold), #d7b670);
+      appearance:none; border:1px solid #4a3b1b; background:linear-gradient(180deg, var(--gold), var(--gold-2));
       color:#1a1204; font-weight:700; padding:.9rem 1.15rem; border-radius:12px; cursor:pointer; box-shadow:var(--shadow);
+      text-decoration:none; display:inline-flex; align-items:center; gap:.45rem;
     }
-    .btn.alt{
-      background:transparent; color:var(--gold); border-color:#605232;
-    }
+    .btn.alt{ background:transparent; color:var(--gold); border-color:#605232; }
+    .btn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
     .hero-portrait{
       position:relative; border-radius: clamp(14px, 1.6vw, 20px); overflow:hidden; box-shadow: var(--shadow);
       min-height: 420px; background:#0f0f0f center/cover no-repeat;
@@ -107,16 +127,16 @@
     }
     .hero-credit{ position:absolute; bottom:8px; right:12px; color:#ffffffb3; font-size:.75rem; }
 
-    /* Sections */
+    /* ===== Seções ===== */
     section{ padding: clamp(48px, 6vw, 96px) 0; border-top:1px solid var(--line); }
-    .section-title{ font-size: clamp(1.6rem, 3vw, 2.2rem); color:var(--text); }
+    .section-title{ font-family: var(--ff-sub); font-weight:500; font-size: clamp(1.6rem, 3vw, 2.2rem); color:var(--text); }
     .section-lead{ color:var(--muted); max-width:68ch; margin-bottom:22px; }
+
     .kpis{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px; margin-top:16px;}
     .kpi{ background:#111; border:1px solid #1e1e1e; border-radius:12px; padding:16px; text-align:center;}
-    .kpi b{ display:block; font-family:"Cormorant Garamond", serif; color:var(--gold); font-size:1.6rem; }
+    .kpi b{ display:block; font-family:var(--ff-title); color:var(--gold); font-size:1.6rem; }
     .kpi span{ color:var(--muted); font-size:.95rem; }
 
-    /* Cards serviços */
     .cards{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:16px;}
     @media (max-width:980px){ .cards{ grid-template-columns:1fr; } }
     .card{
@@ -126,9 +146,9 @@
     .card:hover{ transform:translateY(-2px); box-shadow: var(--shadow); }
     .card .media{ aspect-ratio: 16/10; background:#0d0d0d center/cover no-repeat; }
     .card .body{ padding:16px; }
-    .card h3{ color:var(--gold); margin-bottom:6px; font-size:1.4rem;}
+    .card h3{ font-family:var(--ff-title); color:var(--gold); margin-bottom:6px; font-size:1.35rem;}
     .card p{ color:var(--muted); margin:0 0 12px; }
-    .card .mini{ display:flex; gap:10px; align-items:center; justify-content:space-between;}
+    .card .mini{ display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
 
     /* Galeria + Lightbox */
     .tabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
@@ -143,17 +163,13 @@
     .lightbox{ position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.85); z-index:80; }
     .lightbox.open{ display:grid; }
     .lightbox img{ max-width:90vw; max-height:82vh; border-radius:12px; box-shadow: var(--shadow); }
-    .lightbox .close{ position:absolute; top:14px; right:16px; color:#fff; font-size:2rem; background:none; border:none; cursor:pointer; }
+    .lightbox .close{ position:absolute; top:calc(10px + var(--safe-top)); right:16px; color:#fff; font-size:2rem; background:none; border:none; cursor:pointer; }
 
-    /* Depoimentos (slider simples) */
+    /* Depoimentos */
     .slider{ position:relative; overflow:hidden; }
     .slides{ display:flex; transition: transform .5s ease; }
-    .testimonial{
-      min-width:100%; padding:10px 0;
-    }
-    .tcard{
-      max-width: 860px; margin:0 auto; background:#121212; border:1px solid #1f1f1f; border-radius:16px; padding:22px;
-    }
+    .testimonial{ min-width:100%; padding:10px 0; }
+    .tcard{ max-width: 860px; margin:0 auto; background:#121212; border:1px solid #1f1f1f; border-radius:16px; padding:22px; }
     .t-head{ display:flex; align-items:center; gap:12px; margin-bottom:10px;}
     .avatar{ width:42px; height:42px; border-radius:999px; background:#222 center/cover no-repeat; border:1px solid #2a2a2a;}
     .stars{ color:#f1c40f; letter-spacing:2px; font-size:1rem;}
@@ -167,22 +183,22 @@
       width:100%; background:#111; border:1px solid #242424; color:var(--text); padding:.8rem .9rem; border-radius:10px; font:inherit;
     }
     input:focus, select:focus, textarea:focus{ border-color:#3a301c; outline:none; box-shadow:0 0 0 3px rgba(201,168,106,.12); }
-    .map{ border:0; width:100%; height:260px; border-radius:14px; filter:grayscale(.2) contrast(1.05); }
+    .map{ border:0; width:100%; height:260px; border-radius:14px; filter:grayscale(.2) contrast(1.05); margin-top:8px; }
 
     /* Footer */
-    footer{ padding:24px 0 70px; color:#a6a6a6; border-top:1px solid var(--line); }
+    footer{ padding:24px 0 30px; color:#a6a6a6; border-top:1px solid var(--line); }
     .credits{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
 
-    /* WhatsApp flutuante */
+    /* WhatsApp flutuante (com safe area) */
     .whats{
-      position:fixed; right:16px; bottom:16px; z-index:60; display:flex; align-items:center; gap:10px;
+      position:fixed; right:16px; bottom: calc(16px + var(--safe-bottom)); z-index:70; display:flex; align-items:center; gap:10px;
       background:linear-gradient(180deg, #2ad168, #1fb85a); color:#081b0d; padding:.8rem 1rem; border-radius:999px;
-      text-decoration:none; font-weight:700; box-shadow: var(--shadow); border:1px solid #0f4022;
+      text-decoration:none; font-weight:700; box-shadow: var(--shadow); border:1px solid #0f4022; height: var(--fab);
     }
     .whats:hover{ filter:brightness(.98); transform:translateY(-1px);}
     .hide-on-mobile{ display:inline; } @media (max-width:520px){ .hide-on-mobile{ display:none; } }
 
-    /* Apresentação suave ao rolar */
+    /* Aparição suave */
     .reveal{ opacity:0; transform: translateY(12px); transition: .5s ease; }
     .reveal.in{ opacity:1; transform:none; }
   </style>
@@ -194,19 +210,19 @@
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Início">
         <div class="brand-mark" aria-hidden="true"></div>
-        <span>Lara Luíza <small>makeup</small></span>
+        <span class="brand-text"><b>Lara Luíza</b><small>makeup</small></span>
       </a>
-
-      <button class="burger" aria-label="Abrir menu" id="burger">☰</button>
+      <div class="spacer" aria-hidden="true"></div>
+      <button class="burger" aria-label="Abrir menu" id="burger" aria-expanded="false">☰</button>
       <nav aria-label="Principal">
-        <ul id="menu">
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#noivas">Noivas</a></li>
-          <li><a href="#eventos">Eventos</a></li>
-          <li><a href="#cursos">Cursos</a></li>
-          <li><a href="#depoimentos">Depoimentos</a></li>
-          <li><a href="#contato">Contato</a></li>
-          <li><a class="cta" href="https://wa.me/5531999999999?text=Oi%20Lara!%20Quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar agora</a></li>
+        <ul id="menu" role="menu">
+          <li><a role="menuitem" href="#sobre">Sobre</a></li>
+          <li><a role="menuitem" href="#noivas">Noivas</a></li>
+          <li><a role="menuitem" href="#eventos">Eventos</a></li>
+          <li><a role="menuitem" href="#cursos">Cursos</a></li>
+          <li><a role="menuitem" href="#depoimentos">Depoimentos</a></li>
+          <li><a role="menuitem" href="#contato">Contato</a></li>
+          <li><a class="cta" role="menuitem" href="https://wa.me/5531999999999?text=Oi%20Lara!%20Quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar agora</a></li>
         </ul>
       </nav>
     </div>
@@ -237,7 +253,7 @@
     <section id="sobre">
       <div class="container">
         <h2 class="section-title">Quem é Lara Luíza?</h2>
-        <p class="section-lead">Maquiadora profissional em Belo Horizonte, focada em <strong>noivas</strong>, <strong>formandas</strong> e grandes <strong>eventos</strong>. Participante do <em>M·A·C Pro Makeup Summit Brasil</em> e educadora em cursos e mentorias. Minha missão é valorizar sua essência sem descaracterizar sua beleza.</p>
+        <p class="section-lead">Maquiadora profissional em Belo Horizonte, focada em <strong>noivas</strong>, <strong>formandas</strong> e grandes <strong>eventos</strong>. Minha missão é valorizar sua essência sem descaracterizar sua beleza.</p>
 
         <div class="kpis">
           <div class="kpi"><b>200+</b><span>Noivas atendidas</span></div>
@@ -247,16 +263,18 @@
       </div>
     </section>
 
-    <!-- Serviços / Entradas -->
+    <!-- Serviços -->
     <section id="servicos">
       <div class="container">
-        <h2 class="section-title">Para cada momento, uma produção inesquecível.</h2>
+        <h2 class="section-title" style="display:flex; align-items:baseline; gap:.4rem">
+          Para cada momento, <span class="script">uma produção inesquecível</span>.
+        </h2>
         <div class="cards">
           <article class="card reveal">
             <div class="media" style="background-image:url('assets/card-noivas.jpg');"></div>
             <div class="body">
               <h3>👰 Noivas</h3>
-              <p>Produção completa do seu grande dia: prova, durabilidade, pele glow e emoção preservada em cada detalhe.</p>
+              <p>Prova, durabilidade, pele glow e emoção preservada em cada detalhe.</p>
               <div class="mini">
                 <a class="btn" href="#noivas">Ver mais</a>
                 <a class="btn alt" href="https://wa.me/5531999999999?text=Quero%20agendar%20maquiagem%20de%20noiva" target="_blank">Agendar</a>
@@ -268,7 +286,7 @@
             <div class="media" style="background-image:url('assets/card-eventos.jpg');"></div>
             <div class="body">
               <h3>🎓 Formandas & Eventos</h3>
-              <p>Maquiagem sofisticada que dura até o último brinde. Ideal para formaturas, bailes e ocasiões especiais.</p>
+              <p>Maquiagem sofisticada que dura até o último brinde.</p>
               <div class="mini">
                 <a class="btn" href="#eventos">Ver mais</a>
                 <a class="btn alt" href="https://wa.me/5531999999999?text=Produ%C3%A7%C3%A3o%20para%20formatura%2Fevento" target="_blank">Agendar</a>
@@ -280,7 +298,7 @@
             <div class="media" style="background-image:url('assets/card-cursos.jpg');"></div>
             <div class="body">
               <h3>💄 Cursos & Mentorias</h3>
-              <p>Formações práticas e intensivas em BH para elevar sua técnica e se destacar no mercado.</p>
+              <p>Formações práticas e intensivas em BH para elevar sua técnica.</p>
               <div class="mini">
                 <a class="btn" href="#cursos">Ver mais</a>
                 <a class="btn alt" href="https://wa.me/5531999999999?text=Quero%20informacoes%20sobre%20os%20cursos" target="_blank">Quero aprender</a>
@@ -291,7 +309,7 @@
       </div>
     </section>
 
-    <!-- Noivas – Galeria com tabs -->
+    <!-- Noivas – Galeria -->
     <section id="noivas">
       <div class="container">
         <h2 class="section-title">Noivas reais, histórias reais.</h2>
@@ -387,11 +405,9 @@
               <div class="tcard">
                 <div class="t-head">
                   <div class="avatar" style="background-image:url('assets/ava1.jpg')"></div>
-                  <div>
-                    <strong>Ana Paula</strong><div class="stars">★★★★★</div>
-                  </div>
+                  <div><strong>Ana Paula</strong><div class="stars">★★★★★</div></div>
                 </div>
-                <p>“A Lara me deixou exatamente como eu sonhava: natural, iluminada e perfeita nas fotos. A maquiagem durou do making of ao último brinde!”</p>
+                <p>“A Lara me deixou exatamente como eu sonhava: natural, iluminada e perfeita nas fotos.”</p>
               </div>
             </div>
 
@@ -399,11 +415,9 @@
               <div class="tcard">
                 <div class="t-head">
                   <div class="avatar" style="background-image:url('assets/ava2.jpg')"></div>
-                  <div>
-                    <strong>Mariana R.</strong><div class="stars">★★★★★</div>
-                  </div>
+                  <div><strong>Mariana R.</strong><div class="stars">★★★★★</div></div>
                 </div>
-                <p>“Atendimento impecável e muito carinho em cada detalhe. Me senti muito segura para a minha formatura.”</p>
+                <p>“Atendimento impecável e muito carinho em cada detalhe.”</p>
               </div>
             </div>
 
@@ -411,9 +425,7 @@
               <div class="tcard">
                 <div class="t-head">
                   <div class="avatar" style="background-image:url('assets/ava3.jpg')"></div>
-                  <div>
-                    <strong>Vitória L.</strong><div class="stars">★★★★★</div>
-                  </div>
+                  <div><strong>Vitória L.</strong><div class="stars">★★★★★</div></div>
                 </div>
                 <p>“Além de artista, é uma excelente professora. O workshop mudou minha forma de trabalhar a pele.”</p>
               </div>
@@ -465,11 +477,11 @@
         <div>
           <iframe class="map" title="Mapa – Lourdes, Belo Horizonte"
             src="https://www.google.com/maps?q=Lourdes%20-%20Belo%20Horizonte&output=embed" loading="lazy"></iframe>
-          <div class="actions" style="margin-top:12px">
+          <div class="actions" style="margin-top:12px; display:flex; gap:.8rem; flex-wrap:wrap">
             <a class="btn" href="https://wa.me/5531999999999" target="_blank" rel="noopener">📞 WhatsApp Business</a>
             <a class="btn alt" href="https://instagram.com/laraluizamakeup_" target="_blank" rel="noopener">Instagram @laraluizamakeup_</a>
           </div>
-          <small style="color:var(--muted)">Também no perfil artístico: <a href="https://instagram.com/laraluizaart" target="_blank" rel="noopener" style="color:var(--gold)">@laraluizaart</a></small>
+          <small style="color:var(--muted); display:block; margin-top:6px;">Também no perfil artístico: <a href="https://instagram.com/laraluizaart" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none;">@laraluizaart</a></small>
         </div>
       </div>
     </section>
@@ -493,7 +505,7 @@
     <span>🟢</span><span class="hide-on-mobile">Agendar no WhatsApp</span>
   </a>
 
-  <!-- JSON-LD LocalBusiness básico -->
+  <!-- JSON-LD LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -513,12 +525,17 @@
   </script>
 
   <script>
-    // Menu mobile
+    // Header mobile
     const burger = document.getElementById('burger');
     const menu = document.getElementById('menu');
-    burger?.addEventListener('click', () => menu.classList.toggle('open'));
+    burger?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
     // Fecha menu ao clicar em link (mobile)
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');
+    }));
 
     // Ano dinâmico
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -536,18 +553,12 @@
       tabs.forEach(x=>x.classList.remove('active'));
       t.classList.add('active');
       const cat = t.dataset.filter;
-      thumbs.forEach(th => {
-        th.style.display = (cat === 'noivas' || th.dataset.cat === cat) ? '' : 'none';
-        if (cat === 'noivas') th.style.display = (th.dataset.cat === 'noivas') ? '' : 'none';
-      });
-      if(cat !== 'noivas' && cat !== 'formandas' && cat !== 'artistica'){
-        thumbs.forEach(th => th.style.display = '');
-      }
+      thumbs.forEach(th => th.style.display = (th.dataset.cat === cat) ? '' : 'none');
     }));
     // Inicia mostrando "noivas"
     document.querySelector('.tab[data-filter="noivas"]').click();
 
-    // Lightbox simples
+    // Lightbox
     const lb = document.getElementById('lightbox');
     const lbImg = lb.querySelector('img');
     const lbClose = lb.querySelector('.close');
@@ -563,7 +574,7 @@
     lb.addEventListener('click', (e)=> { if(e.target === lb) lb.classList.remove('open'); });
     document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') lb.classList.remove('open'); });
 
-    // Slider de depoimentos (auto + dots)
+    // Slider de depoimentos
     const slider = document.querySelector('[data-slider]');
     const slidesWrap = slider.querySelector('.slides');
     const dots = slider.querySelectorAll('.dot');
@@ -577,13 +588,13 @@
     go(0);
     setInterval(()=> go(idx+1), 6000);
 
-    // Formulário (validação + abrir WhatsApp com pré-preenchido)
+    // Formulário -> WhatsApp
     const form = document.getElementById('contactForm');
     const formMsg = document.getElementById('formMsg');
     form.addEventListener('submit', (e)=>{
       e.preventDefault();
       const data = new FormData(form);
-      const nome = data.get('nome').trim();
+      const nome = (data.get('nome')||'').toString().trim();
       const dataEvt = data.get('data');
       const tipo = data.get('tipo');
       if(!nome || !dataEvt || !tipo){
