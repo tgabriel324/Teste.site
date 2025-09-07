@@ -1,613 +1,394 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Lara Luíza – Maquiagem BH | Noivas, Formandas & Cursos</title>
-  <meta name="description" content="Belezas reais, eternizadas em momentos inesquecíveis. Maquiagem para noivas, formandas e eventos em Belo Horizonte (Lourdes). Agende seu horário." />
-  <meta name="theme-color" content="#0b0b0b" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Lara Luíza – Makeup Premium BH</title>
+  <meta name="description" content="Belezas reais, eternizadas em momentos inesquecíveis. Maquiagem para noivas, formandas, eventos e artísticas em Belo Horizonte. Reserve seu horário.">
+  <meta name="theme-color" content="#0b0b0b"/>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Fontes novas -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Allura&family=Cormorant+Garamond:wght@500;600&family=Lato:wght@300;700&display=swap" rel="stylesheet">
+
+  <!-- External libs CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos/css/atropos.min.css"/>
+
   <style>
     :root{
-      /* Paleta */
-      --bg:#0b0b0b; --surface:#121212; --text:#eaeaea; --muted:#b9b9b9;
-      --gold:#e7c888; --gold-2:#d7b670; --line:#212121; --accent:#20c05c;
-      /* Tipografia */
-      --ff-title: "Playfair Display", serif;
-      --ff-script: "Great Vibes", cursive;
-      --ff-sub: "Cormorant Garamond", serif;
-      --ff-body: "Lato", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      /* Layout */
-      --container: min(1160px, 92vw);
-      --radius:14px; --shadow:0 10px 40px rgba(0,0,0,.35);
-      --headerH: 72px; --fab: 56px; /* tamanho do botão flutuante */
-      /* Áreas seguras (iPhone notch) */
-      --safe-top: env(safe-area-inset-top, 0px);
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --bg:#0b0b0b; --text:#eee; --muted:#aaa;
+      --gold:#e7c888; --gold-2:#d7b670;
+      --line:#1f1f1f; --accent:#20c05c;
+      --ff-title:"Playfair Display",serif;
+      --ff-script:"Allura",cursive;
+      --ff-sub:"Cormorant Garamond",serif;
+      --ff-body:"Lato",sans-serif;
+      --container:min(1160px,92vw);
+      --headerH:72px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    html{scroll-padding-top: calc(var(--headerH) + 8px);} /* evita âncora "colada" no header */
     body{
-      margin:0; background: radial-gradient(1400px 600px at 110% -10%, rgba(231,200,136,.10), transparent 60%), var(--bg);
-      color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-      font-family: var(--ff-body); font-weight:300; scroll-behavior:smooth;
-      /* reserva para o botão flutuante não cobrir o rodapé no mobile */
-      padding-bottom: calc(var(--fab) + 24px + var(--safe-bottom));
-      overscroll-behavior-y: none;
+      margin:0;background:var(--bg);color:var(--text);
+      font-family:var(--ff-body);font-weight:300;line-height:1.6;
+      scroll-behavior:smooth;overscroll-behavior-y:none;
     }
-    img{max-width:100%; display:block}
-    a{color:inherit}
-    .container{width:var(--container); margin-inline:auto; padding-inline: clamp(12px, 2vw, 20px);}
-    .grid{display:grid; gap:clamp(16px, 2.4vw, 28px);}
-    .grid-2{grid-template-columns: 1.05fr 1fr;}
-    @media (max-width: 980px){ .grid-2{grid-template-columns: 1fr;} }
-
-    /* ===== Header ===== */
-    header{
-      position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(10px);
-      background: color-mix(in srgb, var(--bg) 82%, transparent);
-      border-bottom:1px solid var(--line);
-      padding-top: var(--safe-top); /* segura abaixo do notch */
+    img{max-width:100%;display:block}
+    .container{width:var(--container);margin-inline:auto;padding-inline:16px;}
+    h1,h2,h3{margin:0 0 12px}
+    h1{font-family:var(--ff-title);font-size:clamp(2rem,6vw,3.6rem);color:var(--gold);line-height:1.1}
+    h2{font-family:var(--ff-sub);font-size:clamp(1.4rem,4vw,2.2rem);}
+    .script{font-family:var(--ff-script);font-size:1.6rem;color:var(--gold);}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.85rem 1.1rem;border-radius:12px;border:1px solid #4a3b1b;background:linear-gradient(180deg,var(--gold),var(--gold-2));color:#111;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.4);cursor:pointer;transition:.25s}
+    .btn.alt{background:transparent;color:var(--gold);border-color:#605232}
+    .btn:hover{filter:brightness(.96);transform:translateY(-1px)}
+    header{position:sticky;top:0;z-index:50;background:#0b0b0bcc;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:var(--headerH)}
+    .nav img{height:32px;width:auto}
+    nav ul{display:flex;gap:.8rem;list-style:none;margin:0;padding:0}
+    nav a{text-decoration:none;color:var(--muted);padding:.5rem .7rem;border-radius:8px;font-weight:400}
+    nav a:hover{color:var(--gold);background:#111}
+    .burger{display:none;background:none;border:none;color:var(--text);font-size:1.6rem}
+    @media(max-width:880px){
+      nav ul{display:none;flex-direction:column;position:absolute;top:var(--headerH);left:0;right:0;background:#0b0b0b;padding:1rem}
+      nav ul.open{display:flex}
+      .burger{display:block}
     }
-    .nav{
-      height: var(--headerH);
-      display:flex; align-items:center; gap:12px;
-      padding-inline: clamp(10px, 2vw, 16px);
-    }
-    .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
-    .brand-mark{
-      width:38px; height:38px; border-radius:10px;
-      background: radial-gradient(120% 120% at 20% 10%, #fff8 0, #0000 40%), linear-gradient(135deg, #1a1a1a, #222);
-      border:1px solid #2b2b2b; position:relative; overflow:hidden; flex:none;
-    }
-    .brand-mark::after{
-      content:"LL"; position:absolute; inset:0; display:grid; place-items:center;
-      font-weight:700; letter-spacing:.5px;
-      background: linear-gradient(135deg, var(--gold), #f2deae);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-      font-family: var(--ff-title); font-size:18px;
-    }
-    .brand-text{display:flex; flex-direction:column; line-height:1;}
-    .brand-text b{font-family:var(--ff-title); font-weight:600; letter-spacing:.2px;}
-    .brand-text small{color:var(--muted); font-weight:400; margin-top:3px}
-
-    .spacer{flex:1} /* empurra menu/hambúrguer para a direita */
-
-    nav ul{display:flex; align-items:center; gap:12px; list-style:none; margin:0; padding:0;}
-    nav a{ text-decoration:none; color:var(--muted); padding:.55rem .8rem; border-radius:10px; }
-    nav a:hover, nav a:focus-visible{ color:var(--text); background:#1a1a1a; outline:none; }
-    .cta{
-      appearance:none; border:1px solid #4a3b1b; background:linear-gradient(180deg, var(--gold), var(--gold-2));
-      color:#1a1204; font-weight:700; padding:.72rem .95rem; border-radius:12px; box-shadow: var(--shadow); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
-    }
-    .cta:hover{ filter:brightness(.98); transform:translateY(-1px);}
-    .burger{
-      margin-left:auto; background:none; border:none; color:var(--text); font-size:1.55rem; line-height:1; padding:.4rem .6rem; border-radius:8px;
-    }
-    .burger:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
-
-    /* Mobile menu */
-    @media (max-width:900px){
-      nav ul{
-        position:fixed; left:0; right:0; top: calc(var(--headerH) + var(--safe-top)); 
-        height: calc(100dvh - var(--headerH) - var(--safe-top));
-        background:var(--bg); border-top:1px solid var(--line);
-        flex-direction:column; gap:6px; padding:14px; transform:translateY(-140%); transition:.35s ease;
-      }
-      nav ul.open{ transform:translateY(0); }
-      .cta{width:100%}
-    }
-
-    /* ===== Hero ===== */
-    .hero{ padding: clamp(48px, 7vw, 110px) 0 clamp(40px, 6vw, 96px); }
-    .eyebrow{ color: var(--gold); font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:.82rem;}
-    h1,h2,h3{ margin:0 0 10px; line-height:1.06; }
-    h1{ font-family: var(--ff-title); font-weight:600; font-size: clamp(2.1rem, 5.1vw, 4.2rem); color: var(--gold); }
-    .script{ font-family: var(--ff-script); font-size: 1.6rem; color: var(--gold); }
-    .hero p{ color:var(--muted); font-size: clamp(1rem, 1.3vw, 1.2rem); max-width: 62ch;}
-    .hero .actions{ display:flex; gap:.8rem; flex-wrap:wrap; margin-top:18px; }
-    .btn{
-      appearance:none; border:1px solid #4a3b1b; background:linear-gradient(180deg, var(--gold), var(--gold-2));
-      color:#1a1204; font-weight:700; padding:.9rem 1.15rem; border-radius:12px; cursor:pointer; box-shadow:var(--shadow);
-      text-decoration:none; display:inline-flex; align-items:center; gap:.45rem;
-    }
-    .btn.alt{ background:transparent; color:var(--gold); border-color:#605232; }
-    .btn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
-
-    .hero-portrait{
-      position:relative; border-radius: clamp(14px, 1.6vw, 20px); overflow:hidden; box-shadow: var(--shadow);
-      min-height: 420px; background:#0f0f0f center/cover no-repeat;
-    }
-    .hero-portrait::after{
-      content:""; position:absolute; inset:0; background:radial-gradient(100% 70% at 80% 20%, #0000 0, #0007 60%, #000 100%);
-    }
-    .hero-credit{ position:absolute; bottom:8px; right:12px; color:#ffffffb3; font-size:.75rem; }
-
-    /* ===== Seções ===== */
-    section{ padding: clamp(48px, 6vw, 96px) 0; border-top:1px solid var(--line); }
-    .section-title{ font-family: var(--ff-sub); font-weight:500; font-size: clamp(1.6rem, 3vw, 2.2rem); color:var(--text); }
-    .section-lead{ color:var(--muted); max-width:68ch; margin-bottom:22px; }
-
-    .kpis{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px; margin-top:16px;}
-    .kpi{ background:#111; border:1px solid #1e1e1e; border-radius:12px; padding:16px; text-align:center;}
-    .kpi b{ display:block; font-family:var(--ff-title); color:var(--gold); font-size:1.6rem; }
-    .kpi span{ color:var(--muted); font-size:.95rem; }
-
-    .cards{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:16px;}
-    @media (max-width:980px){ .cards{ grid-template-columns:1fr; } }
-    .card{
-      position:relative; overflow:hidden; border-radius:14px; background:#121212; border:1px solid #1f1f1f;
-      transition:.25s ease; box-shadow: 0 0 0 0 transparent;
-    }
-    .card:hover{ transform:translateY(-2px); box-shadow: var(--shadow); }
-    .card .media{ aspect-ratio: 16/10; background:#0d0d0d center/cover no-repeat; }
-    .card .body{ padding:16px; }
-    .card h3{ font-family:var(--ff-title); color:var(--gold); margin-bottom:6px; font-size:1.35rem;}
-    .card p{ color:var(--muted); margin:0 0 12px; }
-    .card .mini{ display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
-
-    /* Galeria + Lightbox */
-    .tabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
-    .tab{ padding:.55rem .85rem; background:#141414; border:1px solid #232323; color:var(--muted); border-radius:999px; cursor:pointer;}
-    .tab.active{ background:#1a1a1a; color:var(--gold); border-color:#3a301c; }
-    .gallery{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:10px; }
-    @media (max-width:900px){ .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-    @media (max-width:580px){ .gallery{ grid-template-columns: 1fr; } }
-    .thumb{ position:relative; overflow:hidden; border-radius:12px; cursor:pointer; border:1px solid #202020; background:#0e0e0e;}
-    .thumb img{ width:100%; height:100%; object-fit:cover; aspect-ratio: 4/3; transition:transform .35s ease; }
-    .thumb:hover img{ transform:scale(1.05); }
-    .lightbox{ position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.85); z-index:80; }
-    .lightbox.open{ display:grid; }
-    .lightbox img{ max-width:90vw; max-height:82vh; border-radius:12px; box-shadow: var(--shadow); }
-    .lightbox .close{ position:absolute; top:calc(10px + var(--safe-top)); right:16px; color:#fff; font-size:2rem; background:none; border:none; cursor:pointer; }
-
-    /* Depoimentos */
-    .slider{ position:relative; overflow:hidden; }
-    .slides{ display:flex; transition: transform .5s ease; }
-    .testimonial{ min-width:100%; padding:10px 0; }
-    .tcard{ max-width: 860px; margin:0 auto; background:#121212; border:1px solid #1f1f1f; border-radius:16px; padding:22px; }
-    .t-head{ display:flex; align-items:center; gap:12px; margin-bottom:10px;}
-    .avatar{ width:42px; height:42px; border-radius:999px; background:#222 center/cover no-repeat; border:1px solid #2a2a2a;}
-    .stars{ color:#f1c40f; letter-spacing:2px; font-size:1rem;}
-    .slider .nav{ display:flex; gap:8px; justify-content:center; margin-top:14px;}
-    .dot{ width:8px; height:8px; border-radius:999px; background:#3a3a3a; border:none;}
-    .dot.active{ background:var(--gold); }
-
-    /* Contato */
-    form{ display:grid; gap:10px;}
-    input, select, textarea{
-      width:100%; background:#111; border:1px solid #242424; color:var(--text); padding:.8rem .9rem; border-radius:10px; font:inherit;
-    }
-    input:focus, select:focus, textarea:focus{ border-color:#3a301c; outline:none; box-shadow:0 0 0 3px rgba(201,168,106,.12); }
-    .map{ border:0; width:100%; height:260px; border-radius:14px; filter:grayscale(.2) contrast(1.05); margin-top:8px; }
-
-    /* Footer */
-    footer{ padding:24px 0 30px; color:#a6a6a6; border-top:1px solid var(--line); }
-    .credits{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
-
-    /* WhatsApp flutuante (com safe area) */
-    .whats{
-      position:fixed; right:16px; bottom: calc(16px + var(--safe-bottom)); z-index:70; display:flex; align-items:center; gap:10px;
-      background:linear-gradient(180deg, #2ad168, #1fb85a); color:#081b0d; padding:.8rem 1rem; border-radius:999px;
-      text-decoration:none; font-weight:700; box-shadow: var(--shadow); border:1px solid #0f4022; height: var(--fab);
-    }
-    .whats:hover{ filter:brightness(.98); transform:translateY(-1px);}
-    .hide-on-mobile{ display:inline; } @media (max-width:520px){ .hide-on-mobile{ display:none; } }
-
-    /* Aparição suave */
-    .reveal{ opacity:0; transform: translateY(12px); transition: .5s ease; }
-    .reveal.in{ opacity:1; transform:none; }
+    section{padding:clamp(60px,8vw,100px) 0;border-top:1px solid var(--line)}
+    .hero{display:grid;gap:2rem;grid-template-columns:1.1fr 1fr;align-items:center}
+    @media(max-width:960px){.hero{grid-template-columns:1fr}}
+    .hero-portrait{border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.6);background:#111 url('assets/hero-lara.jpg') center/cover no-repeat;min-height:420px}
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#top" aria-label="Início">
-        <div class="brand-mark" aria-hidden="true"></div>
-        <span class="brand-text"><b>Lara Luíza</b><small>makeup</small></span>
-      </a>
-      <div class="spacer" aria-hidden="true"></div>
-      <button class="burger" aria-label="Abrir menu" id="burger" aria-expanded="false">☰</button>
-      <nav aria-label="Principal">
-        <ul id="menu" role="menu">
-          <li><a role="menuitem" href="#sobre">Sobre</a></li>
-          <li><a role="menuitem" href="#noivas">Noivas</a></li>
-          <li><a role="menuitem" href="#eventos">Eventos</a></li>
-          <li><a role="menuitem" href="#cursos">Cursos</a></li>
-          <li><a role="menuitem" href="#depoimentos">Depoimentos</a></li>
-          <li><a role="menuitem" href="#contato">Contato</a></li>
-          <li><a class="cta" role="menuitem" href="https://wa.me/5531999999999?text=Oi%20Lara!%20Quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Agendar agora</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <main id="top">
-    <section class="hero">
-      <div class="container grid grid-2">
-        <div>
-          <div class="eyebrow">Lourdes – Belo Horizonte</div>
-          <h1>Belezas reais,<br/> eternizadas em momentos inesquecíveis.</h1>
-          <p>Especialista em maquiagem para noivas, formandas e eventos em Belo Horizonte. Técnica atemporal, pele iluminada e acabamento confortável — para você brilhar do primeiro ao último brinde.</p>
-          <div class="actions">
-            <a class="btn" href="https://wa.me/5531999999999?text=Quero%20reservar%20meu%20hor%C3%A1rio%20exclusivo" target="_blank" rel="noopener">Reserve seu horário exclusivo</a>
-            <a class="btn alt" href="#noivas" aria-label="Ver seção de noivas">Ver noivas</a>
-          </div>
-        </div>
-
-        <figure class="hero-portrait" style="background-image:url('assets/hero-lara.jpg');">
-          <!-- TODO: troque 'assets/hero-lara.jpg' pela imagem de Hero enviada -->
-          <figcaption class="hero-credit">Lara Luíza – Maquiadora</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- Sobre -->
-    <section id="sobre">
-      <div class="container">
-        <h2 class="section-title">Quem é Lara Luíza?</h2>
-        <p class="section-lead">Maquiadora profissional em Belo Horizonte, focada em <strong>noivas</strong>, <strong>formandas</strong> e grandes <strong>eventos</strong>. Minha missão é valorizar sua essência sem descaracterizar sua beleza.</p>
-
-        <div class="kpis">
-          <div class="kpi"><b>200+</b><span>Noivas atendidas</span></div>
-          <div class="kpi"><b>600+</b><span>Produções realizadas</span></div>
-          <div class="kpi"><b>685</b><span>Posts de portfólio</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Serviços -->
-    <section id="servicos">
-      <div class="container">
-        <h2 class="section-title" style="display:flex; align-items:baseline; gap:.4rem">
-          Para cada momento, <span class="script">uma produção inesquecível</span>.
-        </h2>
-        <div class="cards">
-          <article class="card reveal">
-            <div class="media" style="background-image:url('assets/card-noivas.jpg');"></div>
-            <div class="body">
-              <h3>👰 Noivas</h3>
-              <p>Prova, durabilidade, pele glow e emoção preservada em cada detalhe.</p>
-              <div class="mini">
-                <a class="btn" href="#noivas">Ver mais</a>
-                <a class="btn alt" href="https://wa.me/5531999999999?text=Quero%20agendar%20maquiagem%20de%20noiva" target="_blank">Agendar</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card reveal">
-            <div class="media" style="background-image:url('assets/card-eventos.jpg');"></div>
-            <div class="body">
-              <h3>🎓 Formandas & Eventos</h3>
-              <p>Maquiagem sofisticada que dura até o último brinde.</p>
-              <div class="mini">
-                <a class="btn" href="#eventos">Ver mais</a>
-                <a class="btn alt" href="https://wa.me/5531999999999?text=Produ%C3%A7%C3%A3o%20para%20formatura%2Fevento" target="_blank">Agendar</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card reveal">
-            <div class="media" style="background-image:url('assets/card-cursos.jpg');"></div>
-            <div class="body">
-              <h3>💄 Cursos & Mentorias</h3>
-              <p>Formações práticas e intensivas em BH para elevar sua técnica.</p>
-              <div class="mini">
-                <a class="btn" href="#cursos">Ver mais</a>
-                <a class="btn alt" href="https://wa.me/5531999999999?text=Quero%20informacoes%20sobre%20os%20cursos" target="_blank">Quero aprender</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Noivas – Galeria -->
-    <section id="noivas">
-      <div class="container">
-        <h2 class="section-title">Noivas reais, histórias reais.</h2>
-        <p class="section-lead">Cada detalhe pensado para realçar a sua essência no grande dia.</p>
-
-        <div class="tabs" role="tablist" aria-label="Categorias de portfólio">
-          <button class="tab active" data-filter="noivas" role="tab" aria-selected="true">Noivas</button>
-          <button class="tab" data-filter="formandas" role="tab">Formandas</button>
-          <button class="tab" data-filter="artistica" role="tab">Artística</button>
-        </div>
-
-        <div class="gallery" id="gallery">
-          <!-- TODO: substitua src pelas suas fotos -->
-          <div class="thumb" data-cat="noivas"><img src="assets/noiva1.jpg" alt="Noiva – pele iluminada"></div>
-          <div class="thumb" data-cat="noivas"><img src="assets/noiva2.jpg" alt="Noiva – olhos clássicos"></div>
-          <div class="thumb" data-cat="noivas"><img src="assets/noiva3.jpg" alt="Noiva – penteado clássico"></div>
-
-          <div class="thumb" data-cat="formandas"><img src="assets/formanda1.jpg" alt="Formanda – brilho sofisticado"></div>
-          <div class="thumb" data-cat="formandas"><img src="assets/formanda2.jpg" alt="Formanda – pele glow"></div>
-          <div class="thumb" data-cat="formandas"><img src="assets/formanda3.jpg" alt="Madrinha elegante"></div>
-
-          <div class="thumb" data-cat="artistica"><img src="assets/artistica1.jpg" alt="Maquiagem artística – Halloween"></div>
-          <div class="thumb" data-cat="artistica"><img src="assets/artistica2.jpg" alt="Maquiagem criativa – efeitos especiais"></div>
-          <div class="thumb" data-cat="artistica"><img src="assets/artistica3.jpg" alt="Make artística dramática"></div>
-        </div>
-
-        <div class="actions" style="margin-top:14px">
-          <a class="btn" href="https://wa.me/5531999999999?text=Quero%20ser%20uma%20noiva%20da%20Lara" target="_blank">Quero ser uma noiva da Lara</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Eventos -->
-    <section id="eventos">
-      <div class="container">
-        <h2 class="section-title">Celebre com confiança e brilho.</h2>
-        <p class="section-lead">Seja sua formatura, um baile ou uma festa especial, sua maquiagem precisa durar até o último brinde.</p>
-        <div class="cards">
-          <article class="card reveal">
-            <div class="media" style="background-image:url('assets/evento1.jpg');"></div>
-            <div class="body">
-              <h3>Formaturas</h3>
-              <p>Durabilidade, conforto e foto perfeita sob qualquer luz.</p>
-              <a class="btn" href="https://wa.me/5531999999999?text=Agendar%20formatura" target="_blank">Agendar</a>
-            </div>
-          </article>
-          <article class="card reveal">
-            <div class="media" style="background-image:url('assets/evento2.jpg');"></div>
-            <div class="body">
-              <h3>Madrinhas & Bailes</h3>
-              <p>Elegância que valoriza seu estilo e traje.</p>
-              <a class="btn" href="https://wa.me/5531999999999?text=Agendar%20evento" target="_blank">Agendar</a>
-            </div>
-          </article>
-          <article class="card reveal">
-            <div class="media" style="background-image:url('assets/evento3.jpg');"></div>
-            <div class="body">
-              <h3>Editorial & Ensaios</h3>
-              <p>Direção de beleza para fotos e vídeo com acabamento impecável.</p>
-              <a class="btn" href="https://wa.me/5531999999999?text=Agendar%20ensaio" target="_blank">Agendar</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Cursos -->
-    <section id="cursos">
-      <div class="container grid grid-2">
-        <div>
-          <h2 class="section-title">Aprenda com quem vive maquiagem todos os dias.</h2>
-          <p class="section-lead">Cursos presenciais em BH e conteúdos intensivos para elevar sua técnica. Em breve, turmas online.</p>
-          <ul>
-            <li>Curso Intensivo de Noivas (hands-on) – 12h</li>
-            <li>Mentoria 1:1 – plano personalizado</li>
-            <li>Workshop de Pele Glow Atemporal – 6h</li>
-          </ul>
-          <div class="actions">
-            <a class="btn" href="https://wa.me/5531999999999?text=Quero%20saber%20sobre%20os%20cursos" target="_blank">Quero aprender com a Lara</a>
-          </div>
-        </div>
-        <figure class="hero-portrait" style="background-image:url('assets/curso.jpg'); min-height:360px;"></figure>
-      </div>
-    </section>
-
-    <!-- Depoimentos -->
-    <section id="depoimentos" aria-label="Depoimentos de clientes">
-      <div class="container">
-        <h2 class="section-title">O que minhas clientes dizem</h2>
-        <div class="slider" data-slider>
-          <div class="slides">
-            <div class="testimonial">
-              <div class="tcard">
-                <div class="t-head">
-                  <div class="avatar" style="background-image:url('assets/ava1.jpg')"></div>
-                  <div><strong>Ana Paula</strong><div class="stars">★★★★★</div></div>
-                </div>
-                <p>“A Lara me deixou exatamente como eu sonhava: natural, iluminada e perfeita nas fotos.”</p>
-              </div>
-            </div>
-
-            <div class="testimonial">
-              <div class="tcard">
-                <div class="t-head">
-                  <div class="avatar" style="background-image:url('assets/ava2.jpg')"></div>
-                  <div><strong>Mariana R.</strong><div class="stars">★★★★★</div></div>
-                </div>
-                <p>“Atendimento impecável e muito carinho em cada detalhe.”</p>
-              </div>
-            </div>
-
-            <div class="testimonial">
-              <div class="tcard">
-                <div class="t-head">
-                  <div class="avatar" style="background-image:url('assets/ava3.jpg')"></div>
-                  <div><strong>Vitória L.</strong><div class="stars">★★★★★</div></div>
-                </div>
-                <p>“Além de artista, é uma excelente professora. O workshop mudou minha forma de trabalhar a pele.”</p>
-              </div>
-            </div>
-          </div>
-          <div class="nav" aria-label="Navegação de depoimentos">
-            <button class="dot" aria-label="Slide 1"></button>
-            <button class="dot" aria-label="Slide 2"></button>
-            <button class="dot" aria-label="Slide 3"></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contato -->
-    <section id="contato">
-      <div class="container grid grid-2">
-        <div>
-          <h2 class="section-title">Agendamento & Contato</h2>
-          <p class="section-lead">Fale comigo para reservar sua data. Respondo com prioridade para <strong>Noiva</strong>, <strong>Formatura</strong> e <strong>Curso</strong>.</p>
-          <form id="contactForm" novalidate>
-            <label>
-              <span>Nome*</span>
-              <input type="text" name="nome" placeholder="Seu nome" required aria-required="true">
-            </label>
-            <label>
-              <span>Data do evento*</span>
-              <input type="date" name="data" required aria-required="true">
-            </label>
-            <label>
-              <span>Tipo de evento*</span>
-              <select name="tipo" required aria-required="true">
-                <option value="">Selecione</option>
-                <option>Noiva</option>
-                <option>Formatura</option>
-                <option>Curso</option>
-                <option>Artística</option>
-                <option>Outros</option>
-              </select>
-            </label>
-            <label>
-              <span>Mensagem</span>
-              <textarea name="mensagem" rows="4" placeholder="Conte mais sobre o que você precisa"></textarea>
-            </label>
-            <button class="btn" type="submit">Confirmar meu agendamento</button>
-            <p id="formMsg" role="status" aria-live="polite"></p>
-          </form>
-        </div>
-        <div>
-          <iframe class="map" title="Mapa – Lourdes, Belo Horizonte"
-            src="https://www.google.com/maps?q=Lourdes%20-%20Belo%20Horizonte&output=embed" loading="lazy"></iframe>
-          <div class="actions" style="margin-top:12px; display:flex; gap:.8rem; flex-wrap:wrap">
-            <a class="btn" href="https://wa.me/5531999999999" target="_blank" rel="noopener">📞 WhatsApp Business</a>
-            <a class="btn alt" href="https://instagram.com/laraluizamakeup_" target="_blank" rel="noopener">Instagram @laraluizamakeup_</a>
-          </div>
-          <small style="color:var(--muted); display:block; margin-top:6px;">Também no perfil artístico: <a href="https://instagram.com/laraluizaart" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none;">@laraluizaart</a></small>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container credits">
-      <span>© <span id="year"></span> Lara Luíza – Maquiagem BH. Todos os direitos reservados.</span>
-      <span>Especialista em Noivas • Lourdes – Belo Horizonte</span>
-    </div>
-  </footer>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Visualização de imagem">
-    <button class="close" aria-label="Fechar">×</button>
-    <img src="" alt="">
+<header>
+  <div class="container nav">
+    <a href="#top"><img src="assets/logo-laraluiza.png" alt="Lara Luíza Makeup"></a>
+    <button class="burger" aria-label="Abrir menu">☰</button>
+    <nav>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#noivas">Noivas</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#artistica">Artística</a></li>
+        <li><a href="#cursos">Cursos</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <!-- WhatsApp flutuante -->
-  <a class="whats" href="https://wa.me/5531999999999?text=Oi%20Lara!%20Quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <span>🟢</span><span class="hide-on-mobile">Agendar no WhatsApp</span>
-  </a>
+<main id="top">
+  <section>
+    <div class="container hero">
+      <div>
+        <div class="script">Lourdes – Belo Horizonte</div>
+        <h1>Belezas reais, eternizadas em momentos inesquecíveis.</h1>
+        <p>Especialista em maquiagem para noivas, formandas, eventos e artísticas em BH. Técnica atemporal, pele iluminada e acabamento confortável.</p>
+        <div style="margin-top:18px;display:flex;gap:.8rem;flex-wrap:wrap">
+          <a href="https://wa.me/5531999999999" target="_blank" class="btn">Reserve seu horário exclusivo</a>
+          <a href="#noivas" class="btn alt">Ver noivas</a>
+        </div>
+      </div>
+      <div class="hero-portrait"></div>
+    </div>
+  </section>
 
-  <!-- JSON-LD LocalBusiness -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"Lara Luíza – Maquiagem BH",
-    "image":"https://example.com/assets/hero-lara.jpg",
-    "address": {"@type":"PostalAddress","addressLocality":"Belo Horizonte","addressRegion":"MG","streetAddress":"Lourdes"},
-    "areaServed":"Belo Horizonte",
-    "sameAs":[
-      "https://instagram.com/laraluizamakeup_",
-      "https://instagram.com/laraluizaart"
-    ],
-    "url":"https://example.com",
-    "description":"Maquiagem para noivas, formandas e eventos em BH. Belezas reais, eternizadas.",
-    "telephone":"+55 31 99999-9999"
-  }
-  </script>
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <h2>Quem é Lara Luíza?</h2>
+      <p>Sou maquiadora profissional há X anos, especialista em noivas e eventos premium em BH. Já participei de eventos como o M·A·C Pro Summit e ajudei mais de 600 mulheres a se sentirem únicas em seus momentos mais marcantes.</p>
 
-  <script>
-    // Header mobile
-    const burger = document.getElementById('burger');
-    const menu = document.getElementById('menu');
-    burger?.addEventListener('click', () => {
-      const open = menu.classList.toggle('open');
-      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:20px;">
+        <div style="background:#111;border:1px solid #222;border-radius:12px;padding:16px;text-align:center">
+          <b style="font-size:1.6rem;color:var(--gold)">🎓</b><br><span>Cursos realizados</span>
+        </div>
+        <div style="background:#111;border:1px solid #222;border-radius:12px;padding:16px;text-align:center">
+          <b style="font-size:1.6rem;color:var(--gold)">👰</b><br><span>+200 noivas atendidas</span>
+        </div>
+        <div style="background:#111;border:1px solid #222;border-radius:12px;padding:16px;text-align:center">
+          <b style="font-size:1.6rem;color:var(--gold)">💄</b><br><span>Educadora em maquiagem</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOIVAS -->
+  <section id="noivas">
+    <div class="container">
+      <h2>Noivas</h2>
+      <p>Cada detalhe pensado para realçar a sua essência no grande dia.</p>
+      <div class="cards">
+        <div class="atropos my-atropos">
+          <div class="atropos-scale">
+            <div class="atropos-rotate">
+              <div class="atropos-inner card">
+                <img src="assets/noiva1.jpg" alt="Noiva iluminada">
+                <div class="body">
+                  <h3>Maquiagem de Noiva</h3>
+                  <p>Prova, durabilidade, pele glow e emoção preservada.</p>
+                  <a class="btn" href="https://wa.me/5531999999999" target="_blank">Quero ser uma noiva da Lara</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="atropos my-atropos">
+          <div class="atropos-scale">
+            <div class="atropos-rotate">
+              <div class="atropos-inner card">
+                <img src="assets/noiva2.jpg" alt="Noiva clássica">
+                <div class="body">
+                  <h3>Beleza Atemporal</h3>
+                  <p>Técnicas que resistem às emoções do grande dia.</p>
+                  <a class="btn alt" href="#contato">Agendar produção</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTOS -->
+  <section id="eventos">
+    <div class="container">
+      <h2>Formandas & Eventos</h2>
+      <p>Seja sua formatura, um baile ou uma festa especial, sua maquiagem precisa durar até o último brinde.</p>
+      <div class="cards">
+        <div class="card">
+          <img src="assets/evento1.jpg" alt="Formanda">
+          <div class="body">
+            <h3>Formandas</h3>
+            <p>Glow sofisticado e durabilidade garantida.</p>
+            <a class="btn" href="https://wa.me/5531999999999" target="_blank">Agendar</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="assets/evento2.jpg" alt="Evento social">
+          <div class="body">
+            <h3>Eventos & Bailes</h3>
+            <p>Elegância que valoriza seu estilo e traje.</p>
+            <a class="btn alt" href="#contato">Agendar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTÍSTICA -->
+  <section id="artistica">
+    <div class="container">
+      <h2>Maquiagem Artística</h2>
+      <p>Transformando rostos em arte. Produções criativas e memoráveis.</p>
+      <div class="gallery">
+        <a href="assets/artistica1.jpg" class="glightbox"><img src="assets/artistica1.jpg" alt="Artística 1"></a>
+        <a href="assets/artistica2.jpg" class="glightbox"><img src="assets/artistica2.jpg" alt="Artística 2"></a>
+        <a href="assets/artistica3.jpg" class="glightbox"><img src="assets/artistica3.jpg" alt="Artística 3"></a>
+      </div>
+      <div style="margin-top:16px">
+        <a class="btn" href="https://wa.me/5531999999999" target="_blank">Explorar produções criativas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURSOS -->
+  <section id="cursos">
+    <div class="container">
+      <h2>Cursos & Mentorias</h2>
+      <p>Ofereço cursos presenciais em BH e em breve online. Formações práticas e intensivas para quem deseja elevar sua técnica e se destacar no mercado.</p>
+      <div class="card" style="max-width:480px">
+        <img src="assets/curso.jpg" alt="Curso de maquiagem">
+        <div class="body">
+          <h3>Aprenda com a Lara</h3>
+          <p>Mentorias, workshops e cursos completos para profissionais.</p>
+          <a class="btn" href="https://wa.me/5531999999999" target="_blank">Quero aprender</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section id="depoimentos">
+    <div class="container">
+      <h2>O que minhas clientes dizem</h2>
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div style="background:#111;border:1px solid #222;border-radius:16px;padding:20px">
+              <p>“A Lara me deixou exatamente como eu sonhava: natural, iluminada e perfeita nas fotos.”</p>
+              <p><strong>Ana Paula</strong> ⭐⭐⭐⭐⭐</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div style="background:#111;border:1px solid #222;border-radius:16px;padding:20px">
+              <p>“Atendimento impecável e muito carinho em cada detalhe.”</p>
+              <p><strong>Mariana R.</strong> ⭐⭐⭐⭐⭐</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div style="background:#111;border:1px solid #222;border-radius:16px;padding:20px">
+              <p>“Além de artista, é uma excelente professora. O workshop mudou minha forma de trabalhar a pele.”</p>
+              <p><strong>Vitória L.</strong> ⭐⭐⭐⭐⭐</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="container">
+      <h2>Agendamento & Contato</h2>
+      <form id="contactForm" novalidate style="display:grid;gap:.75rem;max-width:720px">
+        <input type="text" name="nome" placeholder="Nome*" required aria-required="true" style="padding:.85rem .95rem;border-radius:12px;border:1px solid #242424;background:#111;color:#eee;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+          <input type="date" name="data" required aria-required="true" style="padding:.85rem .95rem;border-radius:12px;border:1px solid #242424;background:#111;color:#eee;">
+          <select name="tipo" required aria-required="true" style="padding:.85rem .95rem;border-radius:12px;border:1px solid #242424;background:#111;color:#eee;">
+            <option value="">Tipo de evento*</option>
+            <option>Noiva</option>
+            <option>Formatura</option>
+            <option>Evento</option>
+            <option>Artística</option>
+            <option>Curso</option>
+            <option>Outros</option>
+          </select>
+        </div>
+        <textarea name="mensagem" rows="4" placeholder="Mensagem" style="padding:.85rem .95rem;border-radius:12px;border:1px solid #242424;background:#111;color:#eee;"></textarea>
+        <button type="submit" class="btn">Confirmar meu agendamento</button>
+        <p id="formMsg" role="status" aria-live="polite" style="margin:.25rem 0 0;color:#9be29f"></p>
+      </form>
+
+      <div class="container" style="padding:0;margin-top:18px">
+        <iframe title="Mapa – Lourdes, Belo Horizonte" src="https://www.google.com/maps?q=Lourdes%20-%20Belo%20Horizonte&output=embed" loading="lazy" style="border:0;width:100%;height:260px;border-radius:14px;filter:grayscale(.2) contrast(1.05);"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container" style="text-align:center;color:#a8a8a8;padding:24px 0;border-top:1px solid var(--line)">
+    © <span id="year"></span> Lara Luíza – Maquiagem BH. Todos os direitos reservados.
+  </div>
+</footer>
+
+<a href="https://wa.me/5531999999999?text=Oi%20Lara!%20Quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" aria-label="Falar no WhatsApp" style="position:fixed;right:16px;bottom:20px;z-index:99;display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(180deg,#2ad168,#1fb85a);color:#081b0d;padding:.9rem 1.2rem;border-radius:999px;text-decoration:none;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.35)">💬 WhatsApp</a>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Lara Luíza – Maquiagem BH",
+  "image":"https://example.com/assets/hero-lara.jpg",
+  "address":{"@type":"PostalAddress","addressLocality":"Belo Horizonte","addressRegion":"MG","streetAddress":"Lourdes"},
+  "areaServed":"Belo Horizonte",
+  "sameAs":["https://instagram.com/laraluizamakeup_","https://instagram.com/laraluizaart"],
+  "url":"https://example.com",
+  "description":"Maquiagem para noivas, formandas, eventos e artística em BH.",
+  "telephone":"+55 31 99999-9999"
+}
+</script>
+
+<!-- JS libs -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.41/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/atropos"></script>
+
+<script>
+  // Menu mobile
+  (function(){
+    const burger = document.querySelector('.burger');
+    const menu = document.querySelector('nav ul');
+    burger?.addEventListener('click', ()=> menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=> menu.classList.remove('open')));
+  })();
+
+  // Lenis smooth scroll (respeita reduce-motion)
+  (function(){
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    const lenis = new Lenis({duration:1.1,smoothTouch:true});
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  })();
+
+  // GSAP animations
+  (function(){
+    gsap.registerPlugin(ScrollTrigger);
+    // Section reveal
+    gsap.utils.toArray("section").forEach(sec=>{
+      gsap.from(sec,{opacity:0,y:30,duration:.7,ease:"power2.out",scrollTrigger:{trigger:sec,start:"top 85%"}});
     });
-    // Fecha menu ao clicar em link (mobile)
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');
-    }));
-
-    // Ano dinâmico
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Reveal on scroll
-    const io = new IntersectionObserver((entries)=> {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, {threshold: .12});
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // Tabs de categoria
-    const tabs = document.querySelectorAll('.tab');
-    const thumbs = document.querySelectorAll('.thumb');
-    tabs.forEach(t => t.addEventListener('click', () => {
-      tabs.forEach(x=>x.classList.remove('active'));
-      t.classList.add('active');
-      const cat = t.dataset.filter;
-      thumbs.forEach(th => th.style.display = (th.dataset.cat === cat) ? '' : 'none');
-    }));
-    // Inicia mostrando "noivas"
-    document.querySelector('.tab[data-filter="noivas"]').click();
-
-    // Lightbox
-    const lb = document.getElementById('lightbox');
-    const lbImg = lb.querySelector('img');
-    const lbClose = lb.querySelector('.close');
-    document.getElementById('gallery').addEventListener('click', (e) => {
-      const t = e.target.closest('.thumb');
-      if(!t) return;
-      const img = t.querySelector('img');
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lb.classList.add('open');
-    });
-    lbClose.addEventListener('click', ()=> lb.classList.remove('open'));
-    lb.addEventListener('click', (e)=> { if(e.target === lb) lb.classList.remove('open'); });
-    document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') lb.classList.remove('open'); });
-
-    // Slider de depoimentos
-    const slider = document.querySelector('[data-slider]');
-    const slidesWrap = slider.querySelector('.slides');
-    const dots = slider.querySelectorAll('.dot');
-    let idx = 0;
-    function go(i){
-      idx = (i + dots.length) % dots.length;
-      slidesWrap.style.transform = `translateX(-${idx*100}%)`;
-      dots.forEach((d,di)=> d.classList.toggle('active', di===idx));
+    // Parallax leve na hero image
+    const heroImg = document.querySelector(".hero-portrait");
+    if(heroImg){
+      gsap.to(heroImg,{
+        yPercent:-8, ease:"none",
+        scrollTrigger:{trigger:heroImg.closest("section"), start:"top top", end:"bottom top", scrub:true}
+      });
     }
-    dots.forEach((d,di)=> d.addEventListener('click', ()=> go(di)));
-    go(0);
-    setInterval(()=> go(idx+1), 6000);
+  })();
 
-    // Formulário -> WhatsApp
+  // Swiper depoimentos
+  (function(){
+    const el = document.querySelector('.swiper');
+    if (!el) return;
+    new Swiper(el,{
+      loop:true,
+      speed:700,
+      pagination:{ el: el.querySelector('.swiper-pagination'), clickable:true },
+      autoplay:{ delay:5000, disableOnInteraction:false },
+      a11y:true
+    });
+  })();
+
+  // GLightbox galerias
+  (function(){
+    if (typeof GLightbox !== 'undefined') GLightbox({ touchNavigation:true, loop:true });
+  })();
+
+  // Atropos nos cards
+  (function(){
+    if (typeof Atropos === 'undefined') return;
+    document.querySelectorAll('.my-atropos').forEach(el=> Atropos({ el, shadowScale: 1.02 }));
+  })();
+
+  // Form -> WhatsApp
+  (function(){
     const form = document.getElementById('contactForm');
-    const formMsg = document.getElementById('formMsg');
+    const msg = document.getElementById('formMsg');
+    if(!form) return;
     form.addEventListener('submit', (e)=>{
       e.preventDefault();
       const data = new FormData(form);
       const nome = (data.get('nome')||'').toString().trim();
-      const dataEvt = data.get('data');
-      const tipo = data.get('tipo');
+      const dataEvt = (data.get('data')||'').toString();
+      const tipo = (data.get('tipo')||'').toString();
+      const texto = (data.get('mensagem')||'').toString().trim();
       if(!nome || !dataEvt || !tipo){
-        formMsg.textContent = 'Preencha os campos obrigatórios (*).';
-        formMsg.style.color = '#ffb4b4';
+        msg.textContent = 'Preencha os campos obrigatórios (*).';
+        msg.style.color = '#ffb4b4';
         return;
       }
-      const msg = encodeURIComponent(`Oi Lara! Meu nome é ${nome}. Tenho interesse em ${tipo}. Data do evento: ${dataEvt}.`);
-      window.open(`https://wa.me/5531999999999?text=${msg}`, '_blank', 'noopener');
-      formMsg.textContent = 'Abrindo WhatsApp…';
-      formMsg.style.color = '#9be29f';
+      const q = encodeURIComponent(`Oi Lara! Meu nome é ${nome}. Tenho interesse em ${tipo}. Data do evento: ${dataEvt}. ${texto ? 'Mensagem: '+texto : ''}`);
+      window.open(`https://wa.me/5531999999999?text=${q}`, '_blank', 'noopener');
+      msg.textContent = 'Abrindo WhatsApp…'; msg.style.color = '#9be29f';
       form.reset();
     });
-  </script>
+  })();
+
+  // Ano dinâmico
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
-</html>
+</html> 
